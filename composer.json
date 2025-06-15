@@ -1,0 +1,40 @@
+{
+  "name": "trustcomponent/trustcaptcha-php",
+  "description": "TrustCaptcha – Privacy-first CAPTCHA solution for PHP. GDPR-compliant, bot protection made in Europe.",
+  "type": "library",
+  "keywords": [
+    "captcha",
+    "anti-spam",
+    "spam-protection",
+    "bot-protection",
+    "bot-detection",
+    "user-verification",
+    "php",
+    "privacy",
+    "gdpr",
+    "europe",
+    "trustcaptcha",
+    "captcha-service",
+    "made-in-europe"
+  ],
+  "homepage": "https://www.trustcomponent.com/en/products/captcha/integrations/php-captcha",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "TrustComponent",
+      "email": "mail@trustcomponent.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "TrustComponent\\TrustCaptcha\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6"
+  }
+}
