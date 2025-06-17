@@ -3,6 +3,7 @@
 namespace TrustComponent\TrustCaptcha;
 
 use Exception;
+use Composer\CaBundle\CaBundle;
 
 require_once 'model/VerificationToken.php';
 require_once 'model/VerificationResult.php';
@@ -21,11 +22,20 @@ class CaptchaManager {
         ];
 
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER     => $headers,
+            CURLOPT_CUSTOMREQUEST  => 'GET',
+            CURLOPT_SSL_VERIFYPEER => true,
+            CURLOPT_SSL_VERIFYHOST => 2,
+        ]);
+
+        $ca = CaBundle::getSystemCaRootBundlePath();
+        if (is_dir($ca)) {
+            curl_setopt($ch, CURLOPT_CAPATH, $ca);
+        } else {
+            curl_setopt($ch, CURLOPT_CAINFO, $ca);
+        }
 
         if ($proxyOptions !== null) {
             if (isset($proxyOptions['proxy'])) {
