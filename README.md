@@ -48,7 +48,7 @@ try {
 
 3. Act on the result
 ```injectablephp
-// Do something with the verification result
+// Act on the verification result
 if (!$verificationResult->verificationPassed || $verificationResult->score > 0.5) {
     echo "Verification failed or bot score > 0.5 – possible automated request.";
 }
