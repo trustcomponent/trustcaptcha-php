@@ -14,7 +14,7 @@ class CaptchaManager {
 
         $verificationToken = self::getVerificationToken($base64verificationToken);
 
-        $url = "{$verificationToken->apiEndpoint}/verifications/{$verificationToken->verificationId}/assessments";
+        $url = "https://api.trustcomponent.com/verifications/{$verificationToken->verificationId}/assessments";
         $headers = [
             "tc-authorization: $secretKey",
             "tc-library-language: php",
@@ -28,6 +28,11 @@ class CaptchaManager {
             CURLOPT_CUSTOMREQUEST  => 'GET',
             CURLOPT_SSL_VERIFYPEER => true,
             CURLOPT_SSL_VERIFYHOST => 2,
+
+            CURLOPT_FOLLOWLOCATION => false,
+            CURLOPT_MAXREDIRS      => 0,
+            CURLOPT_CONNECTTIMEOUT => 3,
+            CURLOPT_TIMEOUT        => 5,
         ]);
 
         $ca = CaBundle::getSystemCaRootBundlePath();
@@ -80,7 +85,7 @@ class CaptchaManager {
         }
 
         $data = json_decode($decodedVerificationToken);
-        if (!isset($data->apiEndpoint, $data->verificationId, $data->encryptedAccessToken)) {
+        if (!isset($data->verificationId)) {
             throw new VerificationTokenInvalidException("Missing required fields in verification token");
         }
 
