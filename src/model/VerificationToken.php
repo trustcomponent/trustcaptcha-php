@@ -3,13 +3,11 @@
 namespace TrustComponent\TrustCaptcha;
 
 class VerificationToken {
-    public $apiEndpoint;
     public $verificationId;
-    public $encryptedAccessToken;
+    public $clientFailover;
 
-    public function __construct(string $apiEndpoint, string $verificationId, string $encryptedAccessToken) {
-        $this->apiEndpoint = $apiEndpoint;
+    public function __construct(string $verificationId, bool $clientFailover = false) {
         $this->verificationId = $verificationId;
-        $this->encryptedAccessToken = $encryptedAccessToken;
+        $this->clientFailover = $clientFailover;
     }
 }

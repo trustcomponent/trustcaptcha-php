@@ -32,15 +32,18 @@ Need a walkthrough? See the [PHP integration guide](https://www.trustcomponent.c
 
 1. Install the dependency
 ```bash
-composer require trustcomponent/trustcaptcha-php
+composer require trustcomponent/trustcaptcha-php:^3.0
 ```
 
 2. Retrieve the verification result
 ```injectablephp
+use TrustComponent\TrustCaptcha\TrustCaptcha;
+
 // Retrieving the verification result
 $verificationResult = null;
 try {
-  $verificationResult = CaptchaManager::getVerificationResult("<your_secret_key>", "<verification_token_from_your_client>");
+  $trustCaptcha = new TrustCaptcha("<your_api_key>");
+  $verificationResult = $trustCaptcha->getVerificationResult("<verification_token_from_your_client>");
 } catch (Exception $e) {
   // Fetch verification result failed - handle error
 }

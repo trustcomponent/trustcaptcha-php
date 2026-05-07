@@ -5,18 +5,24 @@ namespace TrustComponent\TrustCaptcha;
 class VerificationResult {
     public $captchaId;
     public $verificationId;
+    public $verificationPassed;
     public $score;
-    public $reason;
-    public $mode;
+    public $decisionType;
+    public $decisionAction;
+    public $gatewayFailoverActive;
+    public $riskScoringEnabled;
+    public $minimalDataModeEnabled;
     public $origin;
     public $ipAddress;
+    public $countryCode;
     public $deviceFamily;
     public $operatingSystem;
     public $browser;
-    public $creationTimestamp;
-    public $releaseTimestamp;
-    public $retrievalTimestamp;
-    public $verificationPassed;
+    public $verificationStartedAt;
+    public $verificationFinishedAt;
+    public $resultExpiresAt;
+    public $resultFirstFetchedAt;
+    public $resultLastFetchedAt;
 
     public function __construct($jsonData) {
 
@@ -24,17 +30,23 @@ class VerificationResult {
 
         $this->captchaId = $data['captchaId'] ?? '';
         $this->verificationId = $data['verificationId'] ?? '';
+        $this->verificationPassed = $data['verificationPassed'] ?? false;
         $this->score = $data['score'] ?? 0.0;
-        $this->reason = $data['reason'] ?? '';
-        $this->mode = $data['mode'] ?? '';
+        $this->decisionType = $data['decisionType'] ?? '';
+        $this->decisionAction = $data['decisionAction'] ?? '';
+        $this->gatewayFailoverActive = $data['gatewayFailoverActive'] ?? false;
+        $this->riskScoringEnabled = $data['riskScoringEnabled'] ?? false;
+        $this->minimalDataModeEnabled = $data['minimalDataModeEnabled'] ?? false;
         $this->origin = $data['origin'] ?? '';
         $this->ipAddress = $data['ipAddress'] ?? '';
+        $this->countryCode = $data['countryCode'] ?? '';
         $this->deviceFamily = $data['deviceFamily'] ?? '';
         $this->operatingSystem = $data['operatingSystem'] ?? '';
         $this->browser = $data['browser'] ?? '';
-        $this->creationTimestamp = $data['creationTimestamp'] ?? '';
-        $this->releaseTimestamp = $data['releaseTimestamp'] ?? '';
-        $this->retrievalTimestamp = $data['retrievalTimestamp'] ?? '';
-        $this->verificationPassed = $data['verificationPassed'] ?? false;
+        $this->verificationStartedAt = $data['verificationStartedAt'] ?? '';
+        $this->verificationFinishedAt = $data['verificationFinishedAt'] ?? '';
+        $this->resultExpiresAt = $data['resultExpiresAt'] ?? '';
+        $this->resultFirstFetchedAt = $data['resultFirstFetchedAt'] ?? '';
+        $this->resultLastFetchedAt = $data['resultLastFetchedAt'] ?? '';
     }
 }

@@ -26,9 +26,12 @@
     }
   ],
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.4",
     "ext-json": "*",
-    "composer/ca-bundle": "^1.5.7"
+    "ext-curl": "*"
+  },
+  "suggest": {
+    "composer/ca-bundle": "Optional. If installed, its CA bundle is used as override; otherwise the system default CA store is used."
   },
   "autoload": {
     "psr-4": {
